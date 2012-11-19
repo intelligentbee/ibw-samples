@@ -1,0 +1,114 @@
+
+ibw_website_login:
+    pattern: /login
+    defaults: {_controller: IBWWebsiteBundle:Stairs:login}
+    
+ibw_website_login_check:   
+    pattern: /login_check
+    
+ibw_website_logout:   
+    pattern: /logout
+    
+ibw_website_index:
+    pattern: /
+    defaults: {_controller: IBWWebsiteBundle:Stairs:index}
+    
+ibw_website_user_settings:
+    pattern: /settings
+    defaults: {_controller: IBWWebsiteBundle:Stairs:userSettings}
+    
+ibw_website_register:
+    pattern: /register
+    defaults: {_controller: IBWWebsiteBundle:Stairs:register}
+    
+ibw_website_activities_page:
+    pattern: /activities
+    defaults: {_controller: IBWWebsiteBundle:Stairs:activitiesIndex}
+    
+ibw_website_activities_add:
+    pattern: /activities/add
+    defaults: {_controller: IBWWebsiteBundle:Stairs:activitiesAdd}
+    
+ibw_website_activity_page:
+    pattern: /activities/{id}
+    defaults: {_controller: IBWWebsiteBundle:Stairs:activity}
+    requirements:
+        id: \d+
+
+ibw_website_activity_edit:
+    pattern: /activities/edit/{id}
+    defaults: {_controller: IBWWebsiteBundle:Stairs:activityEdit}   
+    requirements:
+        id: \d+
+    
+ibw_website_activity_delete:
+    pattern: /activities/delete/{id}
+    defaults: {_controller: IBWWebsiteBundle:Stairs:activityDel}    
+    
+ibw_website_stats:    
+    pattern: /stats
+    defaults: {_controller: IBWWebsiteBundle:Stairs:statsIndex}
+
+ibw_website_teams_page:
+    pattern: /team
+    defaults: {_controller: IBWWebsiteBundle:Stairs:teamIndex}
+    
+ibw_website_teams_create:
+    pattern: /team/create
+    defaults: {_controller: IBWWebsiteBundle:Stairs:teamCreate}    
+
+ibw_website_teams_search:
+    pattern: /team/search
+    defaults: {_controller: IBWWebsiteBundle:Stairs:teamSearch} 
+
+ibw_website_teams_join:
+    pattern: /team/join/{id}
+    defaults: {_controller: IBWWebsiteBundle:Stairs:teamJoin} 
+    requirements:
+        id: \d+
+     
+ibw_website_team_page:
+    pattern: /team/{id}
+    defaults: {_controller: IBWWebsiteBundle:Stairs:teamPage}
+    requirements:
+        id: \d+
+   
+ibw_website_team_leave:
+    pattern: /team/leave/{id}
+    defaults: {_controller: IBWWebsiteBundle:Stairs:teamLeave} 
+    requirements:
+        id: \d+
+
+ibw_website_team_assign_owner:
+    pattern: /team/{tid}/owner/{mid}
+    defaults: {_controller: IBWWebsiteBundle:Stairs:teamOwner}
+    requirements:
+        tid: \d+
+        mid: \d+
+    
+ibw_website_team_kick: 
+    pattern: /team/{tid}/kick/{mid}
+    defaults: {_controller: IBWWebsiteBundle:Stairs:teamKick}
+    requirements:
+        tid: \d+
+        mid: \d+
+    
+ibw_website_team_delete:
+    pattern: /team/delete/{id}
+    defaults: {_controller: IBWWebsiteBundle:Stairs:teamDelete} 
+    requirements:
+        id: \d+
+      
+ibw_website_team_rename:  
+    pattern: /team/rename/{id}
+    defaults: {_controller: IBWWebsiteBundle:Stairs:teamRename} 
+    requirements:
+        id: \d+
+
+ibw_website_top:
+    pattern: /top
+    defaults: {_controller: IBWWebsiteBundle:Stairs:topIndex}
+    
+ibw_website_update:
+    pattern: /notifications/check
+    defaults: {_controller: IBWWebsiteBundle:Notifications:check}

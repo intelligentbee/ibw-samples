@@ -1,0 +1,64 @@
+{% extends 'IBWWebsiteBundle:Stairs:layout.html.twig' %}
+{% block javascripts %}
+    <script src="{{ asset('/js/geoloc.js') }}"></script>
+{%endblock%}
+{% block activities_active%}class="active"{% endblock %}
+{% block title %}Activities Page{% endblock %}
+{% block body %}
+    <div class="well"> 
+        <div class="pagination-centered">
+            <form class="form"  action="{{ path('ibw_website_activities_add') }}" method="POST">
+                <label>Add activity:</label>
+                <div class="error_field">
+                    {{ form_errors(add_form) }} 
+                </div>
+                <div class="pagination-centered">
+                    {{ form_widget(add_form.amount,{ 'attr': {'placeholder': 'Amount'} }) }}
+                    <div class="error_field">
+                        {{ form_errors(add_form.amount) }} 
+                    </div>    
+                </div>
+                <div class="well pagination-centered tightborder">
+                    <div>
+                        {{ form_widget(add_form.lat,{ 'attr': {'placeholder': 'Latitude'} }) }}
+                        <div class="error_field">
+                            {{ form_errors(add_form.lat) }} 
+                        </div>
+                    </div>
+                    <div>
+                        {{ form_widget(add_form.lng,{ 'attr': {'placeholder': 'Longitude'} }) }}
+                        <div class="error_field">
+                            {{ form_errors(add_form.lng) }} 
+                        </div>
+                    </div>
+                    {{ form_rest(add_form) }}
+                    <button class="btn btn-info" type="button" onclick="getLoc();">Get Location</button>
+                </div>
+                <button class="btn btn-success" type="submit">Add</button>
+            </form>
+        </div>            
+    </div>
+    <h4> Activities </h4>
+    <table class="table table-striped table-hover table-condensed well pagination-centered w50c">
+        <thead> 
+            <tr>
+                <th>ID</th>
+                <th>Amount</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for activity in activities  %}
+            <tr>                
+                <td><a class="block" href="{{ path('ibw_website_activity_page', {'id': activity.id}) }}"> {{ activity.id }}</a></td>
+                <td><a class="block" href="{{ path('ibw_website_activity_page', {'id': activity.id}) }}"> {{ activity.amount }}</a></td>
+                <td><a class="block" href="{{ path('ibw_website_activity_page', {'id': activity.id}) }}"> {{ activity.createdAt.format('Y-m-d H:i:s') }}</a></td> 
+            </tr>
+        {% else %}
+            <tr> 
+                <td colspan="3" class="error">No activities. </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

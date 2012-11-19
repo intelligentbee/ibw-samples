@@ -1,0 +1,16 @@
+{% extends 'IBWWebsiteBundle:Stairs:layout.html.twig' %}
+{% block title %}Login{% endblock %}
+{% block login_active%}class="active"{% endblock %}
+{% block login %} {%endblock%}
+{% block body %}
+    <div class="well">
+        <form class="pagination-centered" action="{{ path('ibw_website_login_check') }}" method="post">
+            <label for="signin">Sign in:</label>
+            <input type="text" id="_username" name="_username" class="span3" placeholder="E-Mail"  value="{{ last_username }}" />
+            <br>  
+            <input type="password" id="_password" class="span3" name="_password" placeholder="Password" />
+            <br>
+            <button class="btn" type="submit">Login</button>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,11 @@
+gcm_index:
+    pattern:  /
+    defaults: {_controller: IBWWebsiteBundle:GCM:index}
+
+gcm_register:
+    pattern:  /register
+    defaults: {_controller: IBWWebsiteBundle:GCM:register}
+    
+gcm_unregister:
+    pattern:  /unregister
+    defaults: {_controller: IBWWebsiteBundle:GCM:unregister}

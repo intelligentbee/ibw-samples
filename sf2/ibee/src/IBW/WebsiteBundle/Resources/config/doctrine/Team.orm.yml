@@ -1,0 +1,25 @@
+IBW\WebsiteBundle\Entity\Team:
+    type: entity
+    table: team
+    repositoryClass: IBW\WebsiteBundle\Repository\TeamRepository
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        name:
+            type: string
+            length: 50
+    oneToMany:
+        user_teams:
+            targetEntity: UserTeam
+            mappedBy: team
+            
+    manyToOne:
+        owner:
+            targetEntity: User
+            inversedBy: owned_teams
+            joinColumn:
+                name: owner_id
+                referencedColumnName: id
+         

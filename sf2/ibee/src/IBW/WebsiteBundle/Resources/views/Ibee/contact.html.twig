@@ -1,0 +1,22 @@
+{% extends 'IBWWebsiteBundle:Ibee:layout.html.twig' %}
+{%block contact_active%}class="active"{%endblock%}
+{% block content %}
+    <div class="container container-body pagination-centered">
+        <h3> Contact </h3>
+        <div class="form">
+            <form action="/contact" method="POST">
+                <input type="hidden" name="contact[_csrf_token]" value="0978aa13529e278f4abbfe1d4cc8c8ba" id="contact__csrf_token" />               
+                <label for="contact_name">{%trans%}Name{%endtrans%}</label>       
+                <input type="text" name="contact[name]" class="form" id="contact_name" />                
+                <label for="contact_email">{%trans%}Email{%endtrans%}</label>       
+                <input type="text" name="contact[email]" class="form" id="contact_email" />                
+                <label for="contact_tel">{%trans%}Telephone{%endtrans%}</label>        
+                <input type="text" name="contact[tel]" class="form" id="contact_tel" />                
+                <label for="contact_message">{%trans%}Project details{%endtrans%}</label>        
+                <textarea rows="4" cols="30" name="contact[message]" class="form" id="contact_message"></textarea>                
+                <br />
+                <input type="submit" value="{%trans%}Send{%endtrans%}" class="signup_submit" />
+            </form>
+        </div>
+    </div>
+{% endblock %}

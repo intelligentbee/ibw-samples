@@ -1,0 +1,16 @@
+{% extends 'IBWWebsiteBundle:Ibee:layout.html.twig' %}
+{% block sf_active%}class="active"{% endblock %}
+{% block content %}
+    <div class="container container-body pagination-centered">
+        <a href="http://sendgrid.com">
+            <image src="{{ asset('/images/sendgrid-logo.png') }}" alt=""/>
+        </a>
+        <h4><a href="http://sendgrid.com">{%trans%}Email Delivery. Simplified.{%endtrans%}</a></h4>
+        <pre>{%trans%}Cloud-based email infrastructure relieves businesses of the cost and complexity of maintaining custom email systems{%endtrans%}</pre>
+        <a href="http://ibee.intelligentbee.com/stairs">
+            <image src="{{ asset('/images/icon_03.png') }}" style="width: 50px; height: 50px" alt="" />
+        </a>
+        <h4><a href="http://ibee.intelligentbee.com/stairs">{%trans%}Stairs Website{%endtrans%}</a></h4>
+        <pre>{%trans%}Stairs App Website is a way to keep track of your exercise by climbing stairs{%endtrans%}</pre>
+    </div>
+{% endblock %}

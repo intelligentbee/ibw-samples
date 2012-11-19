@@ -1,0 +1,41 @@
+IBWWebsiteBundle_api:
+    resource: "@IBWWebsiteBundle/Resources/config/routing/api.yml"
+    prefix:   /api
+IBWWebsiteBundle_stairs:
+    resource: "@IBWWebsiteBundle/Resources/config/routing/stairs.yml"
+    prefix:   /stairs    
+IBWWebsiteBundle_gcm:
+    resource: "@IBWWebsiteBundle/Resources/config/routing/gcm.yml"
+    prefix:   /gcm       
+
+ibw_website_ibee_home:
+    pattern: /{_locale}
+    defaults: {_controller: IBWWebsiteBundle:Ibee:index, _locale: en}
+    requirements:
+        _locale: en|ro     
+
+        
+ibw_website_ibee_symfony:
+    pattern: /{_locale}/symfony
+    defaults: {_controller: IBWWebsiteBundle:Ibee:sfIndex, _locale: en}
+    requirements:
+        _locale: en|ro     
+
+  
+ibw_website_ibee_mobile:
+    pattern: /{_locale}/mobile
+    defaults: {_controller: IBWWebsiteBundle:Ibee:mobileIndex, _locale: en}
+    requirements:
+        _locale: en|ro     
+
+ibw_website_ibee_jobs:
+    pattern: /{_locale}/jobs
+    defaults: {_controller: IBWWebsiteBundle:Ibee:jobsIndex, _locale: en}
+    requirements:
+        _locale: en|ro     
+
+ibw_website_ibee_contact:
+    pattern: /{_locale}/contact
+    defaults: {_controller: IBWWebsiteBundle:Ibee:contactIndex, _locale: en} 
+    requirements:
+        _locale: en|ro     

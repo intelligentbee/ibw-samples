@@ -1,0 +1,74 @@
+{% extends 'IBWWebsiteBundle:Stairs:layout.html.twig' %}
+{% block javascripts %}
+    <script>
+         $(document).ready(function(){
+            $('#search_form').submit(function(){
+                $.post("{{ path('ibw_website_teams_search') }}",
+                    {
+                        name: $('#team_name').val()
+                    },
+                    function(data)
+                    {
+                        $('#search').html(data);
+                    });
+                return false;
+            }); 
+        });
+    </script>
+{% endblock %}
+{% block team_active%}class="active"{% endblock %}
+{% block title %}Team page{% endblock %}
+{% block body %}
+    <div class="well ">
+        <form class="pagination-centered form-inline" action="{{ path('ibw_website_teams_create') }}" method="POST">
+            <div class="error_field">
+                {{ form_errors(name_form) }} 
+            </div>
+             <div>
+                {{ form_widget(name_form.name,{ 'attr': {'placeholder': 'Name'} }) }}
+                <button type="submit" class="btn btn-primary"> Create team </button>
+                <div class="error_field">
+                    {{ form_errors(name_form.name) }} 
+                </div>
+                {{ form_rest(name_form) }}
+            </div>
+            
+        </form>
+    </div>
+    <div class="well ">
+        <form id="search_form" class="form-search pagination-centered" action="{{ path('ibw_website_teams_search') }}">
+            <input id="team_name" class="input-medium" type="text" name="name" id="name" placeholder="Search name"/>
+            <button class="btn btn-info">Search team</button>
+        </form>
+        <div id="search"></div>
+    </div>       
+    <div class="well">
+        <h4> Your Teams </h4>
+        <table class="table table-striped table-hover table-condensed well w50c">
+            <thead> 
+                <tr>
+                    <th>ID</th>
+                    <th class="pagination-left">Name</th>
+                    <th>Owner</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for team in teams  %}
+                <tr>                
+                    <td colspan="1"><a class="block" href="{{ path('ibw_website_team_page', {'id': team.id}) }}"> {{ team.id }}</a></td>
+                    <td colspan="1" class="pagination-left"><a class="block" href="{{ path('ibw_website_team_page', {'id': team.id}) }}"> {{ team.name }}</a></td>
+                    {% if team.getOwner() == app.user %}
+                        <td colspan="1"><a class="block" href="{{ path('ibw_website_team_page', {'id': team.id}) }}"> You </a></td>
+                    {% else %}
+                        <td colspan="1"><a class="block" href="{{ path('ibw_website_team_page', {'id': team.id}) }}"> {{ team.getOwner().getEmail() }}</a></td> 
+                    {% endif %}
+                </tr>
+            {% else %}
+                <tr> 
+                    <td colspan="3" class="error">No teams. </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>        
+{% endblock %}

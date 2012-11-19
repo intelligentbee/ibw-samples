@@ -1,0 +1,47 @@
+jms_security_extra:
+    secure_all_services: false
+    expressions: true
+
+security:
+    encoders:
+          Symfony\Component\Security\Core\User\User: 
+              algorithm: sha1
+              iterations: 1
+              encode_as_base64: false
+          IBW\WebsiteBundle\Entity\User: sha512
+
+    role_hierarchy:
+        ROLE_USER:        ROLE_USER
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+         user_db:
+            entity: { class: IBW\WebsiteBundle\Entity\User, property: email}
+
+    firewalls:
+        secured_area:
+            pattern:    ^/stairs
+            form_login:
+                provider: user_db
+                check_path: /stairs/login_check
+                login_path: /stairs/login
+                always_use_default_target_path: true
+                default_target_path: /stairs
+            logout:
+                path:   /stairs/logout
+                target: /stairs
+            anonymous: ~
+            http_basic: ~
+            #    realm: "Secured Demo Area"
+
+    access_control:
+        - { path: ^/stairs/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }  
+        - { path: ^/stairs/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/stairs/activities, roles: IS_AUTHENTICATED_FULLY }  
+        - { path: ^/stairs/activity, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/stairs/stats, roles: IS_AUTHENTICATED_FULLY }  
+        - { path: ^/stairs/team, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/stairs/top, roles: IS_AUTHENTICATED_FULLY }  
+        - { path: ^/stairs/settings, roles: IS_AUTHENTICATED_FULLY }
+        #- { path: ^/_internal/secure, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }

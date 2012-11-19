@@ -1,0 +1,7 @@
+parameters:
+#    ibw_website.example.class: IBW\WebsiteBundle\Example
+
+services:
+#    ibw_website.example:
+#        class: %ibw_website.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

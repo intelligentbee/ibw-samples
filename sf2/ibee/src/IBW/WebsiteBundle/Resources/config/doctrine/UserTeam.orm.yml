@@ -1,0 +1,21 @@
+IBW\WebsiteBundle\Entity\UserTeam:
+    type: entity
+    table: user_team
+    repositoryClass: IBW\WebsiteBundle\Repository\UserTeamRepository
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    manyToOne:
+        user:
+            targetEntity: User
+            inversedBy: user_teams
+            joinColumn:
+                name: user_id
+                referencedColumnName: id 
+        team:
+            targetEntity: Team
+            inversedBy: user_teams
+            joinColumn:
+                name: team_id
+                referencedColumnName: id            

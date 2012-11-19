@@ -1,0 +1,157 @@
+{% extends 'IBWWebsiteBundle:Stairs:layout.html.twig' %}
+{% block team_active%}class="active"{% endblock %}
+{% block title %}Team {{ team.name }}{% endblock %}
+{% block body %} 
+    <table class="table table-striped table-hover table-condensed well w50c">
+        <thead> 
+            <tr>
+                <th>ID</th>
+                <th class="pagination-left">Name</th>
+                <th class="pagination-left">Owner</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>                
+                <td> {{ team.id }}</td>
+                <td class="pagination-left"> {{ team.name }}</td>
+                <td class="pagination-left"> {{ team.getOwner().getEmail() }}</td>
+            </tr>
+        </tbody>
+    </table> 
+    <div class="well">
+    {% if app.user == team.getOwner() %}
+        <form class="pagination-centered" action="{{ path('ibw_website_team_rename', {'id': team.id}) }}" method="POST">
+            <div class="error_field">
+                {{ form_errors(name_form) }} 
+            </div>
+            <div>
+                {{ form_widget(name_form.name,{ 'attr': {'placeholder': 'Name'} }) }}
+                <div class="error_field">
+                    {{ form_errors(name_form.name) }} 
+                </div>
+                {{ form_rest(name_form) }}
+                <button type="submit" class="btn btn-success">Change name</button>
+            </div>
+        </form>              
+        <form class="pagination-centered" action="{{ path('ibw_website_team_delete', {'id': team.id}) }}" method="POST">
+            <button class="btn btn-danger" type="submit">Delete Team</button>
+        </form>
+    {% endif %}      
+        <form class="pagination-centered" action="{{ path('ibw_website_team_leave', {'id': team.id}) }}" method="POST">
+            <button class="btn btn-warning" type="submit">Leave Team</button>
+        </form>        
+    </div>
+    {% if members %}
+        <div class="well"> 
+            <h4> Members </h4>
+            <table class="table table-striped table-hover table-condensed well w50c">
+                <thead> 
+                    <tr>
+                        <th>ID</th>
+                        <th class="pagination-left">Email</th>
+                        {% if app.user == team.getOwner() %}
+                            <th colspan="1"> Assign Ownership</th>
+                            <th colspan="1"></th>
+                        {% endif %}
+                    </tr>
+                </thead>
+                <tbody>
+                {% for member in members %}
+                    <tr class="pagination-center" onmouseover="this.style.cursor='pointer'">                
+                        <td colspan="1"> {{ member.id }}</td>
+                        <td colspan="1" class="pagination-left"> {{ member.email }}</td>
+                         {% if app.user == team.getOwner() %}
+                             {% if app.user.getEmail() == member.email %}
+                                <td colspan="1" > You are owner</td>
+                                <td colspan="1" ></td>
+                             {% else %}
+                                <td colspan="1" >
+                                    <form class="input-append" action="{{ path('ibw_website_team_assign_owner', {'mid': member.id,'tid': team.id}) }}" method="POST">
+                                        <button class="btn btn-mini"  >Assign Ownership</button>
+                                    </form>
+                                 </td>
+                                <td colspan="1" > 
+                                    <form class="input-append" action="{{ path('ibw_website_team_kick', {'mid': member.id,'tid': team.id}) }}" method="POST">
+                                        <button class="close" >×</button>
+                                    </form>
+                                </td>
+                            {% endif %}
+                        {% endif %}
+                     </tr>
+                {% else %}
+                    <tr> 
+                        <td colspan="2" class="error">No teams. </td>
+                    </tr>
+                {% endfor %}       
+                </tbody>
+            </table>
+        </div>      
+    {% endif %}
+    <div class="well pagination-centered">
+        <h4> Tops</h4>
+        <div class="well clearfix">
+            <h5>All time</h5>
+            <table class="center-table">
+            {% for tops in all_time_top  %}                           
+                <tr>
+                    <td><span class="badge">{{ loop.index }}</span></td> 
+                    <td class="pagination-left  p5lr"> {{ tops.email }} </td> 
+                    <td class="pull-right"><span class="badge badge-info">{{tops.total}}</span> </td>
+                </tr>
+            {% endfor %}
+            </table>
+            <br>
+        </div>
+        <div class="well clearfix">
+            <h5>This week</h5>
+            <table class="center-table">
+            {% for tops in this_week_top  %}                           
+                <tr>
+                    <td><span class="badge">{{ loop.index }}</span></td> 
+                    <td class="pagination-left  p5lr"> {{ tops.email }} </td> 
+                    <td class="pull-right"><span class="badge badge-info">{{tops.total}}</span> </td>
+                </tr>
+            {% endfor %}
+            </table>
+            <br>
+        </div>
+        <div class="well clearfix">
+            <h5>This month</h5>
+            <table class="center-table">
+            {% for tops in this_month_top  %}                           
+                <tr>
+                    <td><span class="badge">{{ loop.index }}</span></td> 
+                    <td class="pagination-left  p5lr"> {{ tops.email }} </td> 
+                    <td class="pull-right"><span class="badge badge-info">{{tops.total}}</span> </td></tr>
+            {% endfor %}
+            </table>
+            <br>
+        </div>
+        <div class="well clearfix">
+            <h5>Last week</h5>
+            <table class="center-table">
+            {% for tops in last_week_top  %}                           
+                <tr>
+                    <td><span class="badge">{{ loop.index }}</span></td> 
+                    <td class="pagination-left  p5lr"> {{ tops.email }} </td> 
+                    <td class="pull-right"><span class="badge badge-info">{{tops.total}}</span> </td>
+                </tr>
+            {% endfor %}
+            </table>
+            <br>
+        </div>
+        <div class="well clearfix">
+            <h5>Last month</h5>
+            <table class="center-table">
+            {% for tops in last_month_top  %}                           
+                <tr>
+                    <td><span class="badge">{{ loop.index }}</span></td> 
+                    <td class="pagination-left  p5lr"> {{ tops.email }} </td> 
+                    <td class="pull-right"><span class="badge badge-info">{{tops.total}}</span> </td>
+                </tr>
+            {% endfor %}
+            </table>
+            <br>
+        </div>
+    </div>
+{% endblock %}        

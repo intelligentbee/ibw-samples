@@ -1,0 +1,10 @@
+{% extends 'IBWWebsiteBundle:Stairs:layout.html.twig' %}
+{% block title %}Register{% endblock %}
+{% block body %}
+    <div class="well">
+        <form class="pagination-centered" action="{{ path('ibw_website_register') }}" method="POST">  
+            {{ form_widget(register_form) }}   
+            <button type="submit" class="btn">Register</button>  
+        </form>   
+    </div>
+{% endblock %}

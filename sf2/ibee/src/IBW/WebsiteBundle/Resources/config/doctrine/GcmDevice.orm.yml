@@ -1,0 +1,25 @@
+IBW\WebsiteBundle\Entity\GcmDevice:
+    type: entity
+    repositoryClass: IBW\WebsiteBundle\Repository\GcmDeviceRepository
+    table: gcm_device
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        reg_id:
+            type: string
+        updated_at:
+            type: datetime 
+        created_at:
+            type: datetime
+    manyToOne:
+        user:
+            targetEntity: User
+            inversedBy: gcm_devices
+            joinColumn:
+                name: user_id
+                referencedColumnName: id
+    lifecycleCallbacks:
+        prePersist: [ setCreatedAtValue, setUpdatedAtValue ]
+        preUpdate:  [ setUpdatedAtValue ]
