@@ -1,8 +1,0 @@
-app/logs/
-app/cache/
-nbproject/
-*.php~
-
-# Configuration files
-app/config/parameters.ini
-app/config/parameters.yml
