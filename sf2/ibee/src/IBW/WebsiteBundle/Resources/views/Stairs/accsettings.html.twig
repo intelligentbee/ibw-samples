@@ -1,0 +1,12 @@
+{% extends 'IBWWebsiteBundle:Stairs:layout.html.twig' %}
+{% block title %}Account settings{% endblock %}
+{% block body %}
+    <div class="well">
+        <form class="pagination-centered" action="{{ path('ibw_website_user_settings') }}" method="POST" enctype ="">  
+            <label>Change Password</label>  
+            <input type="password" id="password" name="password" class="span3" placeholder="New Password" ><br/>   
+            <button type="submit" class="btn">Submit</button>  
+        </form>   
+    </div>
+{% endblock %}
+

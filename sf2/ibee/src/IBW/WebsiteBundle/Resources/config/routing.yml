@@ -1,0 +1,12 @@
+IBWWebsiteBundle_api:
+    resource: "@IBWWebsiteBundle/Resources/config/routing/api.yml"
+    prefix:   /api
+IBWWebsiteBundle_stairs:
+    resource: "@IBWWebsiteBundle/Resources/config/routing/stairs.yml"
+    prefix:   /stairs    
+IBWWebsiteBundle_gcm:
+    resource: "@IBWWebsiteBundle/Resources/config/routing/gcm.yml"
+    prefix:   /gcm       
+IBWWebsiteBundle_ibee:
+    resource: "@IBWWebsiteBundle/Resources/config/routing/ibee.yml"
+    prefix:   /   

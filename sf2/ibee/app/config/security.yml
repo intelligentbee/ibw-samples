@@ -1,0 +1,37 @@
+jms_security_extra:
+    secure_all_services: false
+    expressions: true
+
+security:
+    encoders:
+          IBW\WebsiteBundle\Entity\User: sha512
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    providers:
+         user_db:
+            entity: { class: IBW\WebsiteBundle\Entity\User, property: email}
+
+    firewalls:
+        secured_area:
+            pattern:    ^/stairs
+            form_login:
+                provider: user_db
+                check_path: /stairs/login_check
+                login_path: /stairs/login
+                always_use_default_target_path: true
+                default_target_path: /stairs
+            logout:
+                path:   /stairs/logout
+                target: /stairs
+            anonymous: ~
+            http_basic: ~
+
+    access_control:
+        - { path: ^/stairs/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }  
+        - { path: ^/stairs/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/stairs/.+, roles: IS_AUTHENTICATED_FULLY } 
+        - { path: ^/stairs, roles: IS_AUTHENTICATED_ANONYMOUSLY }  
+         

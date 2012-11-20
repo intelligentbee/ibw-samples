@@ -1,0 +1,24 @@
+<table class="table table-striped table-hover table-condensed well w50c">
+    <thead> 
+        <tr>
+            <th>ID</th>
+            <th class="pagination-left">Name</th>
+            <th class="pagination-left">Owner</th>
+            <th>Click to join</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for steam in searchTeams  %}
+        <tr>                
+            <td colspan="1"> {{ steam.id }}</td>
+            <td colspan="1" class="pagination-left"> {{ steam.name }}</td>
+            <td colspan="1" class="pagination-left"> {{ steam.getOwner().getEmail() }}</td>
+            <td colspan="1"><a class="block" href="{{ path('ibw_website_teams_join', {'id': steam.id}) }}"> Join</a></td>
+        </tr>
+    {% else %}
+        <tr> 
+            <td colspan="4" class="error">No teams. </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

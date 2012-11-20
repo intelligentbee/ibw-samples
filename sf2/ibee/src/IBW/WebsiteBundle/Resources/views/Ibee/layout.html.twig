@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>{%block title%}@intelligent->bee{%endblock%}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link href="{{ asset("/bootstrap/css/bootstrap.css") }}" rel="stylesheet">
+        <link href="{{ asset("/bootstrap/css/bootstrap-responsive.css") }}" rel="stylesheet">
+        <link href="{{ asset('/css/ibeestyle.css') }}" type="text/css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="container navbar-wrapper">
+            <div class="navbar navbar-inverse">
+                <div class="navbar-inner tcy">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="#">@intelligent->bee</a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav">
+                            <li {%block home_active%}{%endblock%}><a href="{{ path('ibw_website_ibee_home') }}">{%trans%}Home{%endtrans%}</a></li>
+                            <li {%block sf_active%}{%endblock%}><a href="{{ path('ibw_website_ibee_symfony') }}">{%trans%}Symfony development{%endtrans%}</a></li>
+                            <li {%block mob_active%}{%endblock%}><a href="{{ path('ibw_website_ibee_mobile') }}">{%trans%}Mobile development{%endtrans%}</a></li>
+                        </ul>
+                        <ul class="nav pull-right">
+                            <li {%block jobs_active%}{%endblock%}><a href="{{ path('ibw_website_ibee_jobs') }}">{%trans%}Jobs{%endtrans%}</a></li>
+                            <li {%block contact_active%}{%endblock%}><a href="{{ path('ibw_website_ibee_contact') }}">{%trans%}Contact{%endtrans%}</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Ro-En <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ path(app.request.attributes.get('_route'), {'_locale': 'ro'})}}">RO</a></li>
+                                    <li><a href="{{ path(app.request.attributes.get('_route'), {'_locale': 'en'})}}">EN</a></li>
+                                </ul>
+                            </li>
+                        </ul>      
+                    </div>
+                </div>
+             </div>
+        </div>
+        {%block content%}
+        {% endblock %}
+        {%block carousel%}
+        {% endblock %}
+        {%block marketing%}
+        {% endblock %}
+        <div class="container">
+            <footer>
+                <p class="pull-right"><a href="#">{%trans%}Back to top{%endtrans%}</a></p>
+                <p>&copy; 2012 Company, Inc. &middot; 
+            </footer>
+        </div>
+        <script src="{{asset('/js/jquery-1.8.2.min.js')}}"></script>
+        <script src="{{asset('/bootstrap/js/bootstrap-transition.js')}}"></script>
+        <script src="{{asset('/bootstrap/js/bootstrap-alert.js')}}"></script>
+        <script src="{{asset('/bootstrap/js/bootstrap-modal.js')}}"></script>
+        <script src="{{asset('/bootstrap/js/bootstrap-dropdown.js')}}"></script>
+        <script src="{{asset('/bootstrap/js/bootstrap-scrollspy.js')}}"></script>
+        <script src="{{asset('/bootstrap/js/bootstrap-tab.js')}}"></script>
+        <script src="{{asset('/bootstrap/js/bootstrap-tooltip.js')}}"></script>
+        <script src="{{asset('/bootstrap/js/bootstrap-popover.js')}}"></script>
+        <script src="{{asset('/bootstrap/js/bootstrap-button.js')}}"></script>
+        <script src="{{asset('/bootstrap/js/bootstrap-collapse.js')}}"></script>
+        <script src="{{asset('/bootstrap/js/bootstrap-carousel.js')}}"></script>
+        <script src="{{asset('/bootstrap/js/bootstrap-typeahead.js')}}"></script>
+    </body>
+</html>
