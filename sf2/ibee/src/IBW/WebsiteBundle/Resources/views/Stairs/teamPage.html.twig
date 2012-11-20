@@ -2,41 +2,41 @@
 {% block team_active%}class="active"{% endblock %}
 {% block title %}Team {{ team.name }}{% endblock %}
 {% block body %} 
-    <table class="table table-striped table-hover table-condensed well w50c">
-        <thead> 
-            <tr>
-                <th>ID</th>
-                <th class="pagination-left">Name</th>
-                <th class="pagination-left">Owner</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>                
-                <td> {{ team.id }}</td>
-                <td class="pagination-left"> {{ team.name }}</td>
-                <td class="pagination-left"> {{ team.getOwner().getEmail() }}</td>
-            </tr>
-        </tbody>
-    </table> 
     <div class="well">
-    {% if app.user == team.getOwner() %}
-        <form class="pagination-centered" action="{{ path('ibw_website_team_rename', {'id': team.id}) }}" method="POST">
-            <div class="error_field">
-                {{ form_errors(name_form) }} 
-            </div>
-            <div>
-                {{ form_widget(name_form.name,{ 'attr': {'placeholder': 'Name'} }) }}
+        <table class="table table-striped table-hover table-condensed well w50c">
+            <thead> 
+                <tr>
+                    <th>ID</th>
+                    <th class="pagination-left">Name</th>
+                    <th class="pagination-left">Owner</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>                
+                    <td> {{ team.id }}</td>
+                    <td class="pagination-left"> {{ team.name }}</td>
+                    <td class="pagination-left"> {{ team.getOwner().getEmail() }}</td>
+                </tr>
+            </tbody>
+        </table> 
+        {% if app.user == team.getOwner() %}
+            <form class="pagination-centered" action="{{ path('ibw_website_team_rename', {'id': team.id}) }}" method="POST">
                 <div class="error_field">
-                    {{ form_errors(name_form.name) }} 
+                    {{ form_errors(name_form) }} 
                 </div>
-                {{ form_rest(name_form) }}
-                <button type="submit" class="btn btn-success">Change name</button>
-            </div>
-        </form>              
-        <form class="pagination-centered" action="{{ path('ibw_website_team_delete', {'id': team.id}) }}" method="POST">
-            <button class="btn btn-danger" type="submit">Delete Team</button>
-        </form>
-    {% endif %}      
+                <div>
+                    {{ form_widget(name_form.name,{ 'attr': {'placeholder': 'Name'} }) }}
+                    <div class="error_field">
+                        {{ form_errors(name_form.name) }} 
+                    </div>
+                    {{ form_rest(name_form) }}
+                    <button type="submit" class="btn btn-success">Change name</button>
+                </div>
+            </form>              
+            <form class="pagination-centered" action="{{ path('ibw_website_team_delete', {'id': team.id}) }}" method="POST">
+                <button class="btn btn-danger" type="submit">Delete Team</button>
+            </form>
+        {% endif %}      
         <form class="pagination-centered" action="{{ path('ibw_website_team_leave', {'id': team.id}) }}" method="POST">
             <button class="btn btn-warning" type="submit">Leave Team</button>
         </form>        
@@ -89,7 +89,7 @@
     {% endif %}
     <div class="well pagination-centered">
         <h4> Tops</h4>
-        <div class="well clearfix">
+        <div class="clearfix w50c">
             <h5>All time</h5>
             <table class="center-table">
             {% for tops in all_time_top  %}                           
@@ -102,7 +102,7 @@
             </table>
             <br>
         </div>
-        <div class="well clearfix">
+        <div class="clearfix w50c">
             <h5>This week</h5>
             <table class="center-table">
             {% for tops in this_week_top  %}                           
@@ -115,7 +115,7 @@
             </table>
             <br>
         </div>
-        <div class="well clearfix">
+        <div class="clearfix w50c">
             <h5>This month</h5>
             <table class="center-table">
             {% for tops in this_month_top  %}                           
@@ -127,7 +127,7 @@
             </table>
             <br>
         </div>
-        <div class="well clearfix">
+        <div class="clearfix w50c">
             <h5>Last week</h5>
             <table class="center-table">
             {% for tops in last_week_top  %}                           
@@ -140,7 +140,7 @@
             </table>
             <br>
         </div>
-        <div class="well clearfix">
+        <div class="clearfix w50c">
             <h5>Last month</h5>
             <table class="center-table">
             {% for tops in last_month_top  %}                           
