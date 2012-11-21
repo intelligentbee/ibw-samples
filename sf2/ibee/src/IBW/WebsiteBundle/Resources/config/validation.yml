@@ -1,0 +1,48 @@
+IBW\WebsiteBundle\Entity\User:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: email
+            message: "Email already used"  
+    properties:
+        email:
+            - Email: 
+                message: "Not a valid email"
+            - NotBlank:
+                message: "Email required"
+        password:
+            - NotBlank: 
+                message: "Password required"
+            - MinLength: 
+                limit: 6
+                message: "Password too short Enter at least {{ limit }} character|Password too short Enter at least {{ limit }} characters"         
+IBW\WebsiteBundle\Entity\StairsActivity: 
+    properties:
+        amount:
+            - NotBlank: 
+                message: "Amount required"
+            - Min:
+                limit: 1
+                message: "Amount must greater than 0"
+        lng:
+            - Range:
+                min: -180
+                max: 180
+                minMessage: "Too small"
+                maxMessage: "Too big"
+        lat:
+            - Range:
+                min: -180
+                max: 180
+                minMessage: "Too small"
+                maxMessage: "Too big"
+          
+IBW\WebsiteBundle\Entity\Team: 
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: 
+            fields: name
+            message: "Name already taken"
+    properties:      
+        name:
+            - NotBlank:
+                message: "Name required"
+        

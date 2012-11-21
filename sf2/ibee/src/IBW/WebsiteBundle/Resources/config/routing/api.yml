@@ -1,0 +1,55 @@
+ibw_website_api_api_create_user:
+    pattern:  /user/create
+    defaults: {_controller: IBWWebsiteBundle:API:createUser}
+
+ibw_website_api_activity_add:
+    pattern:  /stairactivity/create
+    defaults: {_controller: IBWWebsiteBundle:API:addStairActivity}
+    
+ibw_website_api_user_edit:
+    pattern: /user/edit
+    defaults: {_controller: IBWWebsiteBundle:API:editUser}
+    
+ibw_website_api_activity_edit:
+    pattern: /stairactivity/edit
+    defaults: {_controller: IBWWebsiteBundle:API:editStairActivity}
+    
+ibw_website_api_activity_delete:
+    pattern: /stairactivity/delete
+    defaults: {_controller: IBWWebsiteBundle:API:deleteStairActivity} 
+    
+ibw_website_api_activity_get:
+    pattern: /stairactivity/get
+    defaults: {_controller: IBWWebsiteBundle:API:getStairActivity}
+    
+ibw_website_api_top_get:
+    pattern: /stairactivity/top
+    defaults: {_controller: IBWWebsiteBundle:API:getTop}
+    
+ibw_website_api_user_stats:
+    pattern: /user/stats
+    defaults: {_controller: IBWWebsiteBundle:API:getUserStats}
+    
+ibw_website_api_user_teams:
+    pattern: /user/teams
+    defaults: {_controller: IBWWebsiteBundle:API:getUserTeams}
+    
+ibw_website_api_team_members:
+    pattern: /team/members
+    defaults: {_controller: IBWWebsiteBundle:API:getTeamMembers}
+
+ibw_website_api_team_create:
+    pattern: /team/create
+    defaults: {_controller: IBWWebsiteBundle:API:createTeam}
+
+ibw_website_api_team_join:
+    pattern: /team/join
+    defaults: {_controller: IBWWebsiteBundle:API:joinTeam}
+    
+ibw_website_api_team_stats:
+    pattern: /team/stats
+    defaults: {_controller: IBWWebsiteBundle:API:teamStats}    
+    
+ibw_website_api_team_leave:
+    pattern: /team/leave
+    defaults: {_controller: IBWWebsiteBundle:API:leaveTeam}

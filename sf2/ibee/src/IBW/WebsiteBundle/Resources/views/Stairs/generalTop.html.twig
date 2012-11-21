@@ -1,0 +1,99 @@
+{% extends 'IBWWebsiteBundle:Stairs:layout.html.twig' %}
+{% block javascripts %}
+    <link rel="stylesheet" href="{{ asset('/css/jquery-ui.css') }}" />
+    <script src="{{ asset('/js/jquery-ui.js') }}"></script>
+    <script src="{{ asset('/js/datepick.js') }}"></script>
+{% endblock %}
+{% block top_active%}class="active"{% endblock %}
+{% block title %}Top{% endblock %}
+{% block body %} 
+    <div class="pagination-centered">
+        {% if ctop %}
+            <div class="well clearfix">
+                <h5>Custom period</h5>
+                <table class="center-table">
+                {% for tops in ctop  %}                           
+                     <tr>
+                         <td><span class="badge">{{ loop.index }}</span></td> 
+                         <td class="pagination-left p5lr" >{{ tops.email }}</td> 
+                         <td class="pull-right"><span class="badge badge-info">{{tops.total}}</span> </td>
+                     </tr>
+                {% endfor %}
+                </table>
+                <br>
+            </div>
+        {% endif %}
+        <div class="well clearfix">
+            <h5>All time</h5>
+            <table class="center-table">
+            {% for tops in all_time_top  %}                           
+                <tr>
+                    <td><span class="badge">{{ loop.index }}</span></td> 
+                    <td class="pagination-left  p5lr"> {{ tops.email }} </td> 
+                    <td class="pull-right"><span class="badge badge-info">{{tops.total}}</span> </td>
+                </tr>
+            {% endfor %}
+            </table><br>
+        </div>
+        <div class="well clearfix">
+            <h5>This week</h5>
+            <table class="center-table">
+            {% for tops in this_week_top  %}                           
+                <tr>
+                    <td><span class="badge">{{ loop.index }}</span></td> 
+                    <td class="pagination-left  p5lr"> {{ tops.email }} </td> 
+                    <td class="pull-right"><span class="badge badge-info">{{tops.total}}</span> </td>
+                </tr>
+            {% endfor %}
+            </table><br>
+        </div>
+        <div class="well clearfix">
+            <h5>This month</h5>
+            <table class="center-table">
+            {% for tops in this_month_top  %}                           
+                <tr>
+                    <td><span class="badge">{{ loop.index }}</span></td> 
+                    <td class="pagination-left  p5lr"> {{ tops.email }} </td> 
+                    <td class="pull-right"><span class="badge badge-info">{{tops.total}}</span> </td>
+                </tr>
+            {% endfor %}
+            </table>
+            <br>
+        </div>
+        <div class="well clearfix">
+            <h5>Last week</h5>
+            <table class="center-table">
+            {% for tops in last_week_top  %}                           
+                <tr>
+                    <td><span class="badge">{{ loop.index }}</span></td>
+                    <td class="pagination-left  p5lr"> {{ tops.email }} </td>
+                    <td class="pull-right"><span class="badge badge-info">{{tops.total}}</span> </td>
+                </tr>
+            {% endfor %}
+            </table>
+            <br>
+        </div>
+        <div class="well clearfix">
+            <h5>Last month</h5>
+            <table class="center-table">
+            {% for tops in last_month_top  %}                           
+                <tr>
+                    <td><span class="badge">{{ loop.index }}</span></td> 
+                    <td class="pagination-left  p5lr"> {{ tops.email }} </td> 
+                    <td class="pull-right"><span class="badge badge-info">{{tops.total}}</span> </td>
+                </tr>
+            {% endfor %}
+            </table>
+            <br>
+        </div>
+        <div class="well pagination-centered">
+            <label> Custom period </label>
+            <form class="pagination-centered form-inline" action="{{ path('ibw_website_top') }}" method="POST">
+                <input type="text" id="start_date" name="start_date" placeholder="Start Date"/>
+                    to 
+                <input type="text" id="end_date" name="end_date" placeholder="End Date"/>
+                <button class="btn btn-success" type="submit">Get Top</button>
+            </form>
+        </div>
+    </div>        
+{% endblock %}        

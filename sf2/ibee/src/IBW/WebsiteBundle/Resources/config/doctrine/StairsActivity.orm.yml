@@ -1,0 +1,39 @@
+IBW\WebsiteBundle\Entity\StairsActivity:
+    type: entity
+    table: stairs_activity
+    repositoryClass: IBW\WebsiteBundle\Repository\StairsActivityRepository
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:   
+        amount:
+            type: integer
+            scale: 2
+        lng:
+            nullable: true
+            precision: 19
+            type: decimal
+            scale: 15
+        lat:
+            nullable: true
+            type: decimal
+            precision: 19
+            scale: 15
+        is_notification_sent:
+            type: boolean
+        is_deleted:
+            type: boolean
+        created_at:
+            type: datetime
+    manyToOne:
+        user:
+            targetEntity: User
+            inversedBy: stairs_activities
+            joinColumn:
+                name: user_id
+                referencedColumnName: id
+    lifecycleCallbacks:
+        prePersist: [ setCreatedAtValue ]
+
+        
